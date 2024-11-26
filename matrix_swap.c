@@ -1,12 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define M 8
 #define N 8
-void horizontal_swap(int*);
-void vertical_swap(int*);
-void random_swap(int*);
+void horizontal_swap(int (*)[]);
+void vertical_swap(int (*)[]);
+void random_swap(int (*)[]);
 int main()
 {
-    void (*func[])(int*)={horizontal_swap,vertical_swap,random_swap};
+    void (*func[])(int (*)[])={horizontal_swap,vertical_swap,random_swap};
     int arr[M][N],i,j,ch;
     /*Manual input*/
     /*printf("\nEnter the elements of the matrix:\n ");
@@ -29,10 +30,12 @@ int main()
         printf("\n");
     }
     do{
-        printf("\nEnter your choice: \n\t1. Horizontal swap\n\t2.Vetical Swap\n\t3.Random swap\n\t0.Exit");
+        printf("\nEnter your choice: \n\t1. Horizontal swap\n\t2.Vetical Swap\n\t3.Random swap\n\t0.Exit\nEnter your choice: ");
         scanf("%d",&ch);
         switch(ch)
         {
+        case 0:
+            break;
         case 1:
             func[0](arr);
             break;
@@ -46,9 +49,6 @@ int main()
             printf("\nWrong Input!");
             break;
         }
-        /*horizontal_swap(arr);
-        vertical_swap(arr);
-        random_swap(arr);*/
     }while(ch!=0); //while(ch);
     return 0;
 }
@@ -111,9 +111,8 @@ void random_swap(int arr[M][N])
                 jindex=rand()%N;
                 if((check[iindex][jindex]==0)&&(iindex==i&&jindex==j))
                 {
-                    continue;
-                    /*iindex=(iindex+1)%M;
-                    jindex=(jindex+1)%N;*/
+                    iindex=(iindex+1)%M;
+                    jindex=(jindex+1)%N; /*Prevents swapping with same element*/
                 }
             }while((check[iindex][jindex]==1));
             temp=arr[i][j];
@@ -121,11 +120,8 @@ void random_swap(int arr[M][N])
             arr[iindex][jindex]=temp;
             count+=2;
             printf("\narr[%d][%d] swapped with arr[%d][%d]",i,j,iindex,jindex);
-            //printf("\nCount: %d",count);
             check[i][j]=1;
             check[iindex][jindex]=1;
-            /*if(count==M*N)
-                break;*/
         }
         if(count==M*N)
             break;
