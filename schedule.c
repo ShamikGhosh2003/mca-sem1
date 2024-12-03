@@ -24,7 +24,7 @@ int main()
     void (*func[])()={insert_books,create_schedule,print_schedule};
     do
     {
-        printf("\n 1. Insert books\n 2. Create Schedule\n 3. Print Schedule\n 0. Exit");
+        printf("\n\n 1. Insert books\n 2. Create Schedule\n 3. Print Schedule\n 0. Exit");
         printf("\nEnter your choice: ");
         scanf("%d",&ch);
         switch(ch)
@@ -96,6 +96,11 @@ void create_schedule()
         if(c=='\n')
             count++;
     }
+    if(count==0)
+    {
+        printf("\nBook Bank is empty!");
+        return;
+    }
     rewind(bookBank);
     books=(struct book_bank*)malloc(count*sizeof(struct book_bank));
     for(i=0;i<count;i++)
@@ -159,16 +164,21 @@ void print_schedule()
     if(!schedule)
     {
         printf("\nYet to create a schedule!");
-        exit(0);
+        return;
     }
     while((c=fgetc(schedule))!=EOF)
     {
         if(c=='\n')
             count++;
     }
+    if(count==0)
+    {
+        printf("\nSchedule is empty!");
+        return;
+    }
     rewind(schedule);
     sch=(myTime *)malloc(count*sizeof(myTime));
-    printf("\n\nSchedule is:");
+    printf("\n\nSchedule is:\n");
     printf("-------------------------------------------------");
     printf("\nBook\t\t\tDay\t\t\tTime\n");
     for(i=0;i<count;i++)
