@@ -38,6 +38,7 @@ int main()
             break;
         default:
             printf("\nWrong Input");
+            break;
         }
     }while(ch);
    return 0;
@@ -118,20 +119,20 @@ void create_schedule()
     fclose(bookBank);
     do
     {
-        printf("-------------------------------------------------");
+        printf("\n-------------------------------------------------");
         printf("\nBook details: ");
         printf("\nSl. No\tTitle\t\tAuthor\t\tPages\t\tPrice\n");
         for(i=0;i<count;i++)
         {
             printf("\n%d: %s\t%s\t%d\t%.2f",(i+1),books[i].title,books[i].author,books[i].pages,books[i].price);
         }
-        printf("-------------------------------------------------");
+        printf("\n-------------------------------------------------");
         printf("\n\nEnter 0 to exit");
         printf("\nChoose a book from above: ");
         scanf("%d",&ch);
         if(ch==0)
         {
-            printf("\nExit from the program!");
+            printf("\nExit from the create schedule!");
             break;
         }
         printf("\nSelected book: %s",books[ch-1].title);
@@ -150,7 +151,7 @@ void create_schedule()
         fprintf(schedule,"%s,%d,%d,%d\n",schedulestr[i].book,schedulestr[i].day,schedulestr[i].hr,schedulestr[i].mn);
     }
     printf("\nSchedule Written to file schedule");
-    printf("-------------------------------------------------");
+    printf("\n-------------------------------------------------");
     fclose(schedule);
 }
 void print_schedule()
