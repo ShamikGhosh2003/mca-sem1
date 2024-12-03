@@ -18,7 +18,7 @@ int main()
         case 1:
         case 2:
         case 3:
-             printf("\nEnter the name of the the source file: ");
+             printf("\nEnter the name of the source file: ");
              scanf("%s",sname);
              printf("\nEnter the name of the destination file: ");
              scanf("%s",dname);
