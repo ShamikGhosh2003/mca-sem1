@@ -10,8 +10,13 @@ int main()
     char rep[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     printf("\nEnter a decimal number: ");
     scanf("%d",&n);
-    printf("\nEnter any base (<62): ");
+    printf("\nEnter any base (>1 & <62): ");
     scanf("%d",&base);
+    if(base<2 || base >62)
+    {
+        printf("\nInvalid base!");
+        return 1;
+    }
     cpy=n;
     while(n!=0)
     {
